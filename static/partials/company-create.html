@@ -1,0 +1,103 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Create new company</h4>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group" ng-class="{'has-error': missingName}">
+                <label for="companyName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.name" type="text" class="form-control" id="companyName" placeholder="Name">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': missingAddress}">
+                <label for="companyName" class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.address" type="text" class="form-control" id="companyAddress" placeholder="Address">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': missingCity}">
+                <label for="companyCity" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.city" type="text" class="form-control" id="companyCity" placeholder="City">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': missingZipcode}">
+                <label for="companyZipcode" class="col-sm-2 control-label">Zipcode</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.zipcode" type="text" class="form-control" id="companyZipcode" placeholder="Zipcode">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': missingCountry}">
+                <label for="companyCountry" class="col-sm-2 control-label">Country</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.country" type="text" class="form-control" id="companyCountry" placeholder="Country">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyEmail" class="col-sm-2 control-label">E-mail</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.email" type="email" class="form-control" id="companyEmail" placeholder="E-mail">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyPhone" class="col-sm-2 control-label">Phone number</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.phone" type="text" class="form-control" id="companyPhone" placeholder="Phone number">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyOwners" class="col-sm-2 control-label">
+                    Owners
+                </label>
+                <div class="col-sm-10">
+                    <div class="input-group" ng-repeat="owner in company.owners track by $index">
+                        <input type="text" value="{{owner}}" class="form-control" readonly>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="controller.removeOwnerByIdx($index)">Remove</button>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" ng-model="ownerInput" class="form-control" placeholder="Owner name">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="controller.addOwner(ownerInput)">Add owner</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyDirectors" class="col-sm-2 control-label">
+                    Directors
+                </label>
+                <div class="col-sm-10">
+                    <div class="input-group" ng-repeat="director in company.directors track by $index">
+                        <input type="text" value="{{director}}" class="form-control" readonly>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="controller.removeDirectorByIdx($index)">Remove</button>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" ng-model="directorInput" class="form-control" placeholder="Director name">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="controller.addDirector(diretorInput)">Add director</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="panel-footer">
+        <i ng-show="creatingCompanyLoading" class="fa fa-spinner fa-spin"></i>
+        <button class="btn btn-danger" ng-click="controller.cancel()">Cancel</button>
+        <button type="submit" class="btn btn-success" ng-click="controller.createCompany()">Create company</button>
+    </div>
+</div>

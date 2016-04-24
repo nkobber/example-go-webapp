@@ -1,0 +1,15 @@
+web:
+    build: .
+    command: './example-go-webapp'
+    environment:
+        PORT: 8080
+        MONGODB_URI: 'mongolab:27017'
+        MONGODB_DB: 'example-webapp'
+    ports:
+        - '8080:8080'
+    links:
+        - mongolab
+mongolab:
+    image: mongo
+    ports:
+        - '27017:27017'

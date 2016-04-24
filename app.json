@@ -1,0 +1,8 @@
+{
+  "name": "Example Go MongoDB Webapp",
+  "description": "An example webapp implemented with Go, MongoDB, Docker and Heroku",
+  "image": "heroku/go",
+  "addons": [
+    "mongolab"
+  ]
+}

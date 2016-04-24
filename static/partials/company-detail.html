@@ -1,0 +1,188 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <i class="fa fa-institution"></i>
+            {{company.name}}
+        </h4>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="companyName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.name" type="text" class="form-control" id="companyName" placeholder="Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyName" class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.address" type="text" class="form-control" id="companyAddress" placeholder="Address">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyCity" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.city" type="text" class="form-control" id="companyCity" placeholder="City">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyZipcode" class="col-sm-2 control-label">Zipcode</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.zipcode" type="text" class="form-control" id="companyZipcode" placeholder="Zipcode">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyCountry" class="col-sm-2 control-label">Country</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.country" type="text" class="form-control" id="companyCountry" placeholder="Country">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyEmail" class="col-sm-2 control-label">E-mail</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.email" type="email" class="form-control" id="companyEmail" placeholder="E-mail">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyPhone" class="col-sm-2 control-label">Phone number</label>
+                <div class="col-sm-10">
+                    <input ng-model="company.phone" type="text" class="form-control" id="companyPhone" placeholder="Phone number">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyOwners" class="col-sm-2 control-label">
+                    Owners
+                </label>
+                <div class="col-sm-10">
+                    <div class="input-group" ng-repeat="owner in company.owners track by $index">
+                        <input type="text" value="{{owner}}" class="form-control" readonly>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="controller.removeOwnerByIdx($index)">Remove</button>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" ng-model="ownerInput" class="form-control" placeholder="Owner name">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="controller.addOwner(ownerInput)">Add owner</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="companyDirectors" class="col-sm-2 control-label">
+                    Directors
+                </label>
+                <div class="col-sm-10">
+                    <div class="input-group" ng-repeat="director in company.directors track by $index">
+                        <input type="text" value="{{director}}" class="form-control" readonly>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="controller.removeDirectorByIdx($index)">Remove</button>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" ng-model="directorInput" class="form-control" placeholder="Director name">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="controller.addDirector(diretorInput)">Add director</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="panel-footer">
+        <button type="button" class="btn btn-success" ng-click="controller.save()">
+            <i class="fa fa-save"></i> Save
+        </button>
+        <button type="button" class="btn btn-danger" ng-click="controller.delete()">
+            <i class="fa fa-remove"></i> Delete
+        </button>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+            <h4 class="panel-title">
+                Revisions
+                <span class="badge">{{company.revisions.length}}</span>
+            </h4>
+    </div>
+    <table class="table table-hover table-condensed table-striped">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    Zipcode
+                </th>
+                <th>
+                    Country
+                </th>
+                <th>
+                    E-mail
+                </th>
+                <th>
+                    Phone no
+                </th>
+                <th>
+                    Owners
+                </th>
+                <th>
+                    Directors
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="rev in company.revisions">
+                <td>
+                    <button class="btn btn-warning" ng-click="controller.restoreRevision(rev)">Restore</button>
+                </td>
+                <td>
+                    {{rev.name}}
+                </td>
+                <td>
+                    {{rev.address}}
+                </td>
+                <td>
+                    {{rev.city}}
+                </td>
+                <td>
+                    {{rev.zipcode}}
+                </td>
+                <td>
+                    {{rev.country}}
+                </td>
+                <td>
+                    {{rev.email}}
+                </td>
+                <td>
+                    {{rev.phone}}
+                </td>
+                <td>
+                    {{rev.owners|join}}
+                </td>
+                <td>
+                    {{rev.directors|join}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
