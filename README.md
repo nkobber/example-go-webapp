@@ -97,8 +97,7 @@ Updates an existing company
 
 #### Example request
 ```bash
-{"id":"571d62ee2a017600018ebc0b","name":"Apple Inc","address":"1 Infinite Loop","city":"Cupertino","zipcode":"CA 95014","country":"USA","email":"apple@apple.com","phone":"(408) 996–1010","owners":["Steve Jobs"],"directors":["Tim Cook"],"revisions":[{"id":"571d62ee2a017600018ebc0b","name":"Apple","address":"1 Infinite Loop","city":"Cupertino","zipcode":"CA 95014","country":"USA","email":"apple@apple.com","phone":"(408) 996–1010","owners":["Steve Jobs"],"directors":["Tim Cook"],"revisions":[]}]}
-
+curl -XPOST -H "Content-type: application/json" -d '{"id":"571d62ee2a017600018ebc0b","name":"Apple Inc","address":"1 Infinite Loop","city":"Cupertino","zipcode":"CA 95014","country":"USA","email":"apple@apple.com","phone":"(408) 996–1010","owners":["Steve Jobs"],"directors":["Tim Cook"],"revisions":[]}' 'http://192.168.99.100:8080/api/companies/571d62ee2a017600018ebc0b'
 ```
 #### Example response
 ```json
