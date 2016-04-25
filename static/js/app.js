@@ -200,7 +200,11 @@
             $scope.company = company;
             $scope.loading = false;
         }, function error(err) {
-            $scope.loadError = true;
+
+            if (err.status === 404) {
+                $scope.notFound = true;
+            }
+
             $scope.loading = false;
         });
 

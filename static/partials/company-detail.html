@@ -1,4 +1,8 @@
-<div class="panel panel-default">
+<div ng-if="notFound" class="alert alert-danger" role="alert">
+    Not found
+</div>
+
+<div class="panel panel-default" ng-if="company">
     <div class="panel-heading">
         <h4 class="panel-title">
             <i class="fa fa-institution"></i>
@@ -108,9 +112,9 @@
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default" ng-if="company">
     <div class="panel-heading">
-            <h4 class="panel-title">
+        <h4 class="panel-title">
                 Revisions
                 <span class="badge">{{company.revisions.length}}</span>
             </h4>
