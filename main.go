@@ -94,12 +94,19 @@ func companiesList(c *gin.Context) {
 func companiesDetail(c *gin.Context) {
 	var company Company
 	id := c.Param("id")
+
+	// Check if the id is valid - if not, return 404
+	if !bson.IsObjectIdHex(id) {
+		c.JSON(http.StatusNotFound, gin.H{"status": "Not found"})
+		return
+	}
+
 	session := mongoSession.Copy()
 	defer session.Close()
 	collection := session.DB(dbName).C("companies")
 
 	// Get the object or 404
-	err := collection.Find(bson.M{"_id": bson.ObjectIdHex(id)}).One(&company)
+	err := collection.FindId(bson.ObjectIdHex(id)).One(&company)
 	if err != nil {
 		if err == mgo.ErrNotFound {
 			c.JSON(http.StatusNotFound, gin.H{"status": "Not found"})
@@ -116,6 +123,13 @@ func companiesDetail(c *gin.Context) {
 
 func companiesUpdate(c *gin.Context) {
 	id := c.Param("id")
+
+	// Check if the id is valid - if not, return 404
+	if !bson.IsObjectIdHex(id) {
+		c.JSON(http.StatusNotFound, gin.H{"status": "Not found"})
+		return
+	}
+
 	session := mongoSession.Copy()
 	defer session.Close()
 	collection := session.DB(dbName).C("companies")
@@ -162,6 +176,13 @@ func companiesUpdate(c *gin.Context) {
 
 func companiesDelete(c *gin.Context) {
 	id := c.Param("id")
+
+	// Check if the id is valid - if not, return 404
+	if !bson.IsObjectIdHex(id) {
+		c.JSON(http.StatusNotFound, gin.H{"status": "Not found"})
+		return
+	}
+
 	session := mongoSession.Copy()
 	defer session.Close()
 	collection := session.DB(dbName).C("companies")
